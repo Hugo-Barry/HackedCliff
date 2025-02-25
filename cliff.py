@@ -9,18 +9,7 @@ EARTH_RADIUS = 6371000  # Earth's radius in meters
 def generate_user_data(n=50):
     """Generate fake user data: lat, lon, distance, and azimuth"""
     users = []
-    for _ in range(n):
-        # Random latitude and longitude near a known location
-        lat = 50.0 - np.random.uniform(0.05, 0.1)  # Users below the cliff (latitude varies more)
-        lon = -5.0 + np.random.uniform(-0.1, 0.1)  # Random longitude variation with wider range
-        
-        # Random distance to the cliff in meters, kinf of works? maybe tweak -------------------
-        distance = np.random.uniform(200, 500)  # Users are further away (200m to 500m)
-        distance *= 15  # They keep spawnning inside the point so dont delete this
-        
-        azimuth = np.random.uniform(-15, 15)  # User faces +-15 degrees from north
-        users.append((lat, lon, distance, azimuth))
-    return users
+
 
 # Calculate cliff coordinates based on user position, distance to cliff, and azimuth
 def calculate_cliff(lat, lon, distance, azimuth):
@@ -120,7 +109,7 @@ def plot_cliff(users):
     plt.grid(True)
     plt.legend()
     plt.show()
-
+    
 # Generate fake data with more users and further distances
 users = generate_user_data(50)  # Simulate 50 users
 #img = plt.imread("cliff.png")
